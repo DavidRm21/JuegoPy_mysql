@@ -35,10 +35,20 @@ class Character:
     
     # Movimiento del enemigo
 
-    def enemyMove(self, width, heigth):
+    def enemyMove(self, width, heigth, score):
 
         if self.rect.y >= 0 and self.rect.y < heigth:
-            self.rect.bottom += 10
+            
+            self.rect.bottom += 20
+            
+            """ if score <= 0 and score < 500:
+                self.rect.bottom += 11
+            if score >= 500 and score < 1000:
+                self.rect.bottom += 12
+            if score >= 1000 and score < 5000:
+                self.rect.bottom += 13
+            if score >= 5000:
+                self.rect.bottom += 14 """
         else: 
             self.rect.x = random.randint(0, width - 50)
             self.rect.y = 0 
