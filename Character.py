@@ -42,6 +42,7 @@ class Character:
         else: 
             self.rect.x = random.randint(0, width - 50)
             self.rect.y = 0 
+        
     
     def resetMove(self, width):
 

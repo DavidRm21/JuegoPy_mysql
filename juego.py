@@ -10,6 +10,7 @@ SCREEN_HEIGHT = 600
 JUGADOR_SKIN = (255, 0, 0)
 ENEMY_SKIN = (0, 0, 255)
 BACKGROUND = (0, 0, 0)
+WHITE = (255,255,255)
 
 #bg_image = pygame.image.load("assets/fondo23.jpg").convert_alpha()
 
@@ -17,15 +18,20 @@ def draw_bg():
     scaled_bg = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
     window.blit(scaled_bg, (0,0))
 
+
+# Función de texto de puntaje en pantalla
+def draw_text(surface, text, size, x, y):
+    font = pygame.font.SysFont("serif", size)
+    text_surface = font.render(text, True, WHITE)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    surface.blit(text_surface, text_rect)
+
+
 # Actualizacion de paantalla y dimension
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 FPS = 60
-
-
-# Menu
-menu_options = ["Jugar", "Opciones", "Salir"]
-selected_option = 0
 
 # Instanciar los personajes
 Character_1 = Character(SCREEN_WIDTH / 3, SCREEN_HEIGHT - 80) 
@@ -50,9 +56,8 @@ while not game_over:
     enemy_1.enemyMove(SCREEN_WIDTH ,SCREEN_HEIGHT)
 
     if enemy_1.rect.y == SCREEN_HEIGHT:
-        score += 100   
-
-    print(score)
+        score += 100 
+     
 
     # Colision
     if Character_1.colision(enemy_1.rect.x, enemy_1.rect.y) and lives > 0:
@@ -62,6 +67,9 @@ while not game_over:
         
         if lives <= 0:
             game_over = True
+    
+    # Puntaje
+    draw_text(window, str(score), 25, SCREEN_WIDTH / 2, 10)
     
     for event in pygame.event.get():
 
