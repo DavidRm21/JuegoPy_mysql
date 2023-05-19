@@ -35,20 +35,12 @@ class Character:
     
     # Movimiento del enemigo
 
-    def enemyMove(self, width, heigth, score):
-
-        if self.rect.y >= 0 and self.rect.y < heigth:
+    def enemyMove(self, width, heigth):
+        i = 0
+        if self.rect.y >= 0 and self.rect.y < heigth and i == 0:
             
-            self.rect.bottom += 20
+            self.rect.bottom += 8
             
-            """ if score <= 0 and score < 500:
-                self.rect.bottom += 11
-            if score >= 500 and score < 1000:
-                self.rect.bottom += 12
-            if score >= 1000 and score < 5000:
-                self.rect.bottom += 13
-            if score >= 5000:
-                self.rect.bottom += 14 """
         else: 
             self.rect.x = random.randint(0, width - 50)
             self.rect.y = 0 
@@ -74,4 +66,5 @@ class Character:
     def draw(self, surface, SKIN, ):
         pygame.draw.rect(surface, SKIN, self.rect)
 
+    
 
